@@ -8,23 +8,23 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       doc: undefined
     }
   },
   computed: {
-    count() {
+    count () {
       return this.doc ? this.rmWhitespace(this.doc).length : 0
     }
   },
   watch: {
-    doc(newValue) {
+    doc (newValue) {
       this.$emit('docChanged', this.rmWhitespace(newValue), this.count)
     }
   },
   methods: {
-    rmWhitespace(str) {
+    rmWhitespace (str) {
       return str.replace(/[\s　]/g, '') // eslint-disable-line
     }
   }

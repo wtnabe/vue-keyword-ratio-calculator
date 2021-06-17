@@ -9,22 +9,26 @@
 import WritingArea from './components/WritingArea.vue'
 import MeasuringKeywords from './components/MeasuringKeywords.vue'
 import DocCalculator from './lib/doc_calculator.js'
+import { KeywordsChangedUsecase } from './lib/keywords_changed_usecase'
+import { UpdateDocumentUsecase } from './lib/update_document_usecase'
 
 export default {
   name: 'app',
-  created() {
-    this.docCalculator = new DocCalculator(this)
+  created () {
+    const docCalculator = new DocCalculator()
+    this.keywordsChangedUsecase = new KeywordsChangedUsecase(docCalculator)
+    this.updateDocumentUsecase = new UpdateDocumentUsecase(docCalculator)
   },
   components: {
     WritingArea,
     MeasuringKeywords
   },
   methods: {
-    docChanged(content, count) {
-      this.$emit('docChanged', content, count)
+    docChanged (content, count) {
+      this.updateDocumentUsecase.exec(content, count)
     },
-    keywordsChanged(keywords) {
-      this.$emit('keywordsChanged', keywords)
+    keywordsChanged (keywords) {
+      this.keywordsChangedUsecase.exec(keywords)
     }
   }
 }

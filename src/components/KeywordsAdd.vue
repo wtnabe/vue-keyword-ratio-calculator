@@ -7,13 +7,13 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       keywords: undefined
     }
   },
   methods: {
-    addKeywords(keywords) {
+    addKeywords (keywords) {
       this.$emit('addKeywords', keywords)
       this.keywords = undefined
     }

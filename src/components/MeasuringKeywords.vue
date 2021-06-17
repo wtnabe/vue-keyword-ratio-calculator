@@ -23,24 +23,25 @@ export default {
     MeasuringKeyword,
     KeywordsAdd
   },
-  data() {
+  data () {
     return {
       keywords: []
     }
   },
-  created() {
+  created () {
     this.$emit('keywordsChanged', this.keywords)
   },
   methods: {
-    addKeywords(keywords) {
-      keywords.split(/[\s　]/).filter((s) => s.length > 0) // eslint-disable-line
-      .forEach((k) => {
-        this.keywords = this.keywords.concat({keyword: k, ratio: undefined})
-      })
+    addKeywords (keywords) {
+      keywords
+        .split(/[\s　]/).filter((s) => s.length > 0) // eslint-disable-line
+        .forEach((k) => {
+          this.keywords = this.keywords.concat({ keyword: k, ratio: undefined })
+        })
 
       this.$emit('keywordsChanged', this.keywords)
     },
-    removeKeyword(keyword) {
+    removeKeyword (keyword) {
       this.keywords = this.keywords.filter((k) => {
         return k.keyword !== keyword
       })

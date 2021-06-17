@@ -1,35 +1,28 @@
 export default class {
-  constructor(vue) {
-    this.vm       = vue
-    this.doc      = undefined
-    this.count    = 0
+  constructor () {
+    this.doc = undefined
+    this.count = 0
     this.keywords = undefined
-
-    this.initListeners()
   }
 
-  initListeners() {
-    this.vm.$on('keywordsChanged', (keywords) => {
-      this.updateKeywords(keywords)
-      this.calculate()
-    })
-    this.vm.$on('docChanged', (doc, count) => {
-      this.updateDoc(doc, count)
-      this.calculate()
-    })
-  }
-
-  updateKeywords(keywords) {
+  /**
+   * @param {Array} keywords
+   */
+  updateKeywords (keywords) {
     this.keywords = keywords
   }
 
-  updateDoc(doc, count) {
-    this.doc   = doc
+  /**
+   * @param {string} doc
+   * @param {number} count
+   */
+  updateDoc (doc, count) {
+    this.doc = doc
     this.count = count
   }
 
-  calculate() {
-    if ( this.keywords && this.keywords.length > 0 && this.count > 0 ) {
+  calculate () {
+    if (this.keywords && this.keywords.length > 0 && this.count > 0) {
       this.keywords.forEach((k) => {
         const parts = this.doc.split(k.keyword)
         const count = k.keyword.length * ((parts.length > 1) ? parts.length - 1 : 0)

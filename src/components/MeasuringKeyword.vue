@@ -1,19 +1,19 @@
 <template>
   <div>
     <span class="keyword">{{ keyword }}</span>
-    <span class="ratio">{{ ratio | percent }}%</span>
+    <span class="ratio">{{ percent }}%</span>
     <span class="button"><button @click="$emit('removeKeyword', keyword)">x</button></span>
   </div>
 </template>
 
 <script>
-import {sprintf} from 'sprintf-js'
+import { sprintf } from 'sprintf-js'
 
 export default {
   props: ['keyword', 'ratio'],
-  filters: {
-    percent(value) {
-      return (value) ? sprintf('%02.2f', value * 100 ) : 0
+  computed: {
+    percent () {
+      return (this.ratio) ? sprintf('%02.2f', this.ratio * 100) : 0
     }
   }
 }
