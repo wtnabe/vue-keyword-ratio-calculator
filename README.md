@@ -1,5 +1,9 @@
 # keyword-ratio
 
+## requirements
+
+ * Node.js 10+
+
 ## Project setup
 ```
 yarn install
